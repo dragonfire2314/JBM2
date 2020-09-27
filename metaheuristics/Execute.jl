@@ -12,7 +12,8 @@ struct StoppingCriteria
     use_max_apps::Bool
 end
 
-function StoppingCriteria(; time_limit=10, min_imp_amount=-1, imp_timeframe=2, max_apps=-1)
+function StoppingCriteria(; time_limit=10, min_imp_amount=-1,
+        imp_timeframe=2, max_apps=-1)
     StoppingCriteria(
         time_limit,
         time_limit > 0,
@@ -26,7 +27,8 @@ function StoppingCriteria(; time_limit=10, min_imp_amount=-1, imp_timeframe=2, m
     )
 end
 
-function execute(data, descr_func, score_func, stopping_criteria::StoppingCriteria)
+function execute(data, descr_func, score_func,
+        stopping_criteria::StoppingCriteria)
     num_apps = 0
     # imp_timeframe_start_score = \
     best_score = score_func(data)

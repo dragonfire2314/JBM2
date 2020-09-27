@@ -84,7 +84,7 @@ function create_PMeta_func(pmeta::PMeta)
 	function apply_pmeta!(pop::Vector{Watershed.Sol})
 		tops, bottoms, randoms = select_other_solutions(pmeta, pop)
 		population_center = calc_pop_center(pmeta, pop)
-		for (i, sol) in enumerate(pop)
+		Threads.@threads for (i, sol) in collect(enumerate(pop))
 			new_bitlist = pmeta.perturb(sol, randoms, tops, bottoms,
 				population_center)
 			new_sol = Watershed.Sol(new_bitlist, sol.problem)
